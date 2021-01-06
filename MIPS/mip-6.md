@@ -113,8 +113,8 @@ def pi(w: int):
     if w < soft_min:
         result += (
             floor_penalty
-            * (w - soft_min) ** floor_exponent
-            // (hard_min - soft_min) ** floor_exponent
+            * (soft_min - w) ** floor_exponent
+            // (soft_min - hard_min) ** floor_exponent
         )
     elif soft_max < w:
         result = (
@@ -136,9 +136,9 @@ def dpidw(w: int):
             FULL_SCALE
             * floor_penalty
             * floor_exponent
-            * (w - soft_min)
+            * -1 * (soft_min - w)
             ** (floor_exponent - 1)
-            // (hard_min - soft_min)
+            // (soft_min - hard_min)
             ** floor_exponent
         )
     elif soft_max < w:
@@ -259,6 +259,10 @@ def compute_mint(i: int, quantity: int):
     return total_minted
 ```
 
+### Computing multi-mint output
+
+TBD
+
 ### Compute redeem output
 
 The amount of bAsset received for redeeming a certain amount of mAsset is computed as
@@ -283,6 +287,11 @@ def compute_redeem(i: int, quantity: int):
 
     return total_received
 ```
+
+### Computing multi-redeem output
+
+TBD
+
 
 ### Compute swap output
 
